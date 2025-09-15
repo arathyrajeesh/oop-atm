@@ -15,6 +15,7 @@ class Account:
         if 0 < amount <= self.__balance:
             self.__balance -= amount
             print(f"₹{amount} withdrawn successfully.")
+            print(f"Current Balance: ₹{self.check_balance()}")        
         else:
             print(" No balance")
             
@@ -43,13 +44,6 @@ class ATM(Account):
 atm_user = ATM("123456789", "Arathy", 5000, 1234)
 
 entered_pin = int(input("Enter your ATM PIN: "))
-# if atm_user.validate_pin(entered_pin):
-#     atm_user.show_details()
-#     atm_user.deposit_money(1000)
-#     atm_user.withdraw_money(2000)
-#     print("Balance: " ,atm_user.check_balance())
-# else:
-#     print("Incorrect PIN!")
 if atm_user.validate_pin(entered_pin):
     while True:
         print("\n===== ATM Menu =====")

@@ -21,7 +21,7 @@ class Account:
     def check_balance(self):
         return self.__balance
     
-    def show_detail(self):
+    def show_details(self):
         print("\n----- Account Details -----")
         print(f"Account Number: {self.__account_number}")
         print(f"Holder Name: {self.__holder_name}")
@@ -38,15 +38,42 @@ class ATM(Account):
         
     def show_details(self):
         print("\n----- Account Details -----")
-        super().show_detail()
+        super().show_details()
         
-atm_user = ATM("1234567890", "Arathy", 5000, 1234)
+atm_user = ATM("123456789", "Arathy", 5000, 1234)
 
 entered_pin = int(input("Enter your ATM PIN: "))
+# if atm_user.validate_pin(entered_pin):
+#     atm_user.show_details()
+#     atm_user.deposit_money(1000)
+#     atm_user.withdraw_money(2000)
+#     print("Balance: " ,atm_user.check_balance())
+# else:
+#     print("Incorrect PIN!")
 if atm_user.validate_pin(entered_pin):
-    atm_user.show_details()
-    atm_user.deposit_money(1000)
-    atm_user.withdraw_money(2000)
-    print("Balance: " ,atm_user.check_balance())
+    while True:
+        print("\n===== ATM Menu =====")
+        print("1. Check Balance")
+        print("2. Deposit Money")
+        print("3. Withdraw Money")
+        print("4. Show Account Details")
+        print("5. Exit")
+        choice = int(input('Enter your choice: '))
+        
+        if choice == 1:
+            print(f"Current Balance : {atm_user.check_balance()}")
+        elif choice == 2:
+            amount = float(input('Enter deposit amount :'))
+            atm_user.deposit_money(amount)
+        elif choice == 3:
+            amount = float(input('Enter withdraw amount :'))
+            atm_user.withdraw_money(amount)
+        elif choice == 4:
+            atm_user.show_details()
+        elif choice == 5:
+            print("Thank you for using atm")
+            break
+        else:
+            print("Invalid option")
 else:
-    print("Incorrect PIN!")
+    print("INCORRECT PIN")
